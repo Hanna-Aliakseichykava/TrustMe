@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.trustme.domain.Place;
 import org.trustme.service.EventService;
@@ -42,13 +43,17 @@ public class EventResource {
 
     @GetMapping("/events")
     @Timed
-    public ResponseEntity<List<EventDto>> getAllPlaces(Pageable pageable) throws IOException {
+    public ResponseEntity<List<EventDto>> getAllPlaces(
+        Pageable pageable,
+        @RequestParam("lat") Double lat,
+        @RequestParam("lon") Double lon) throws IOException {
+
         log.debug("REST request to get a page of Events");
         //https://kudago.com/public-api/v1.4/events/?lat=55.7279&lon=37.5847&radius=1000&fields=id,title,categories,place,dates&actual_since=20181020
 
         List<EventDto> events = eventService.getAllEvents(
-            55.7279d,
-            37.5847,
+            lat, //55.7279d
+            lon, //37.5847d
             "https://kudago.com/public-api/v1.4/events/?fields=id,title,categories,place,dates&actual_since=20181020"
         );
 

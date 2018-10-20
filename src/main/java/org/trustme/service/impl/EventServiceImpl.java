@@ -3,6 +3,7 @@ package org.trustme.service.impl;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
+import org.trustme.domain.enumeration.PlaceType;
 import org.trustme.service.EventService;
 import org.trustme.service.dto.EventDto;
 
@@ -43,6 +44,18 @@ public class EventServiceImpl  implements EventService {
             Long id = arr.getJSONObject(i).getLong("id");
             String title = arr.getJSONObject(i).getString("title");
 
+            List<String> categories = new ArrayList<>();
+            JSONArray categoriesJsonArray = arr.getJSONObject(i).getJSONArray("categories");
+            for (int j = 0; j < categoriesJsonArray.length(); j++) {
+                categories.add(categoriesJsonArray.getString(i));
+            }
+
+            eventDto.setId(id);
+            eventDto.setTitle(title);
+            eventDto.setType(PlaceType.EVENT);
+            eventDto.setJson(arr.getJSONObject(i).toString());
+            eventDto.setCategories(categories);
+            eventDto.setPlaceId(arr.getJSONObject(i).getJSONObject("place").getLong("id"));
             events.add(eventDto);
         }
         return events;
