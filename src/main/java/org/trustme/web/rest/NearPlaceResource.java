@@ -42,11 +42,9 @@ public class NearPlaceResource {
     ) throws IOException {
 
         log.debug("REST request to get a page of Nearest Places");
-        //https://kudago.com/public-api/v1.4/events/?lat=55.7279&lon=37.5847&radius=1000&fields=id,title,categories,place,dates&actual_since=20181020
 
         NearPlaceDto place = eventService.getPlace(
-
-            "https://kudago.com/public-api/v1.4/events/?fields=id,title,categories,place,dates&actual_since=20181020"
+            "https://kudago.com/public-api/v1.4/places/" + nearPlaceId.toString()
         );
 
 

@@ -39,17 +39,17 @@ public class EventResource {
     @GetMapping("/events")
     @Timed
     public ResponseEntity<List<EventDto>> getAllEvents(
-        Pageable pageable
-//        @RequestParam("lat") Double lat,
-//        @RequestParam("lon") Double lon
+        Pageable pageable,
+        @RequestParam("lat") Double lat,
+        @RequestParam("lon") Double lon
     ) throws IOException {
 
         log.debug("REST request to get a page of Events");
         //https://kudago.com/public-api/v1.4/events/?lat=55.7279&lon=37.5847&radius=1000&fields=id,title,categories,place,dates&actual_since=20181020
 
         List<EventDto> events = eventService.getAllEvents(
-            55.7279d,
-            37.5847d,
+            lat, //55.7279d,
+            lon, //37.5847d,
             "https://kudago.com/public-api/v1.4/events/?fields=id,title,categories,place,dates&actual_since=20181020"
         );
 
