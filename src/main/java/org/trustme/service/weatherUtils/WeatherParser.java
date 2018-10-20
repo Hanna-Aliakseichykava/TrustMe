@@ -32,7 +32,7 @@ public class WeatherParser {
             if (arr.getJSONObject(i).getString("dt_txt").equals(currenttime)) {
 
                 Weather weather = new Weather();
-                System.out.println("Id " + arr.getJSONObject(i).getJSONObject("main").getString("temp"));
+
 
                 Double temp = (arr.getJSONObject(i).getJSONObject("main").getDouble("temp") - 273.15);
 

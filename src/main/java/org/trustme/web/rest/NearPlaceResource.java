@@ -10,52 +10,47 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.trustme.service.EventService;
 import org.trustme.service.dto.EventDto;
+import org.trustme.service.dto.NearPlaceDto;
 import org.trustme.web.rest.util.PaginationUtil;
 
 import java.io.IOException;
 import java.util.List;
 
 /**
- * REST controller for managing Place.
+ * REST controller for managing Nearest Places.
  */
 @RestController
 @RequestMapping("/api")
-public class EventResource {
+public class NearPlaceResource {
 
-    private final Logger log = LoggerFactory.getLogger(EventResource.class);
+    private final Logger log = LoggerFactory.getLogger(NearPlaceResource.class);
 
-    private static final String ENTITY_NAME = "event";
+    private static final String ENTITY_NAME = "near_place";
 
     @Autowired
     private EventService eventService;
 
 
-    @GetMapping("/events")
+    @GetMapping("/near-places/{nearPlaceId}")
     @Timed
-    public ResponseEntity<List<EventDto>> getAllEvents(
-        Pageable pageable
-//        @RequestParam("lat") Double lat,
-//        @RequestParam("lon") Double lon
+    public ResponseEntity<NearPlaceDto> getPlace(
+        Pageable pageable,
+        @PathVariable("nearPlaceId") Long nearPlaceId //id=2755
     ) throws IOException {
 
-        log.debug("REST request to get a page of Events");
+        log.debug("REST request to get a page of Nearest Places");
         //https://kudago.com/public-api/v1.4/events/?lat=55.7279&lon=37.5847&radius=1000&fields=id,title,categories,place,dates&actual_since=20181020
 
-        List<EventDto> events = eventService.getAllEvents(
-            55.7279d,
-            37.5847d,
+        NearPlaceDto place = eventService.getPlace(
+
             "https://kudago.com/public-api/v1.4/events/?fields=id,title,categories,place,dates&actual_since=20181020"
         );
 
-        Page<EventDto> page = new PageImpl<>(events, pageable, events.size());
 
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/events");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+
+        return new ResponseEntity<NearPlaceDto>(place, HttpStatus.OK);
     }
 }

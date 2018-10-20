@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.trustme.domain.enumeration.PlaceType;
 import org.trustme.service.EventService;
 import org.trustme.service.dto.EventDto;
+import org.trustme.service.dto.NearPlaceDto;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,5 +60,42 @@ public class EventServiceImpl  implements EventService {
             events.add(eventDto);
         }
         return events;
+    }
+
+    @Override
+    public String getResponse(String url) throws IOException {
+        URLConnection connection = new URL(url).openConnection();
+        InputStream response = connection.getInputStream();
+
+        Scanner scanner = new Scanner(response);
+        String responseBody = scanner.useDelimiter("\\A").next();
+        System.out.println(responseBody);
+        return responseBody;
+    }
+
+    @Override
+    public NearPlaceDto getPlace(String url) throws IOException {
+
+        List<NearPlaceDto> events = new ArrayList<>();
+        String responseBody = getResponse(url);
+        JSONObject obj = new JSONObject(responseBody);
+
+
+
+            NearPlaceDto placeDto = new NearPlaceDto();
+
+            Long id = obj.getLong("id");
+            String title = obj.getString("title");
+
+
+
+            placeDto.setId(id);
+            placeDto.setTitle(title);
+            placeDto.setLat(obj.getJSONObject("coords").getDouble("lat"));
+            placeDto.setLon(obj.getJSONObject("coords").getDouble("lon"));
+
+            events.add(placeDto);
+
+        return placeDto;
     }
 }

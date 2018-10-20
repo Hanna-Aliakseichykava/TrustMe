@@ -41,8 +41,10 @@ public class WeatherResource {
     private WeatherParser weatherParser;
     private WeatherDescService weatherDescService;
 
-    public WeatherResource(WeatherService weatherService) {
+    public WeatherResource(WeatherService weatherService, WeatherParser weatherParser, WeatherDescService weatherDescService) {
         this.weatherService = weatherService;
+        this.weatherParser = weatherParser;
+        this.weatherDescService = weatherDescService;
     }
 
     /**
