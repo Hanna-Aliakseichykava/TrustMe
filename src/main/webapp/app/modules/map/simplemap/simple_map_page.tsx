@@ -7,7 +7,7 @@ import { Row, Col, Alert } from 'reactstrap';
 import { IRootState } from 'app/shared/reducers';
 import { getSession } from 'app/shared/reducers/authentication';
 
-import Map from './map.tsx';
+import Map from './map';
 
 export class SimpleMapPage extends React.Component {
   componentDidMount() {
@@ -18,19 +18,14 @@ export class SimpleMapPage extends React.Component {
   }
 
   render() {
-    const { account } = this.props;
     return (
       <Row>
         <Col md="9">
           <h2>Welcome, Java Hipster!</h2>
           <p className="lead">This is your homepage</p>
-          <div>
-            <Alert color="success">You are logged in as user {account.login}.</Alert>
-          </div>
-          }<p>If you have any question on JHipster:</p>
+          <p>If you have any question on JHipster:</p>
           <div className="App">
             <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">Welcome to React</h1>
             </header>
             <Map />
