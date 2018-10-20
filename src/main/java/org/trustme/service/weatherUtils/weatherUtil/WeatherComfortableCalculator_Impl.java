@@ -1,14 +1,16 @@
-package org.trustme.domain.weatherObject.weatherUtil;
+package org.trustme.service.weatherUtils.weatherUtil;
+
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class WeatherComfortableCalculator_Impl implements WeatherComfortableCalculator {
 
     private Integer humid;
     private Double temp;
     private Double wind;
-
 
     private Map<Integer, Integer> comfortZone = new HashMap();
 
@@ -37,7 +39,9 @@ public class WeatherComfortableCalculator_Impl implements WeatherComfortableCalc
 
 
     @Override
-    public int getWetherWeight() {
+    public int getWetherWeight(Integer humid,
+                               Double temp,
+                               Double wind) {
 
         double F = 100 - humid;
         double EET =
@@ -45,7 +49,7 @@ public class WeatherComfortableCalculator_Impl implements WeatherComfortableCalc
                 - 0.385 * Math.pow(wind, 0.59)
                 * ((36.6 - temp) + 0.622 * (wind - 1))
                 + ((0.0015 * wind + 0.0008)
-                * ((36.6 - temp) + 0.0167)) * wind;
+                * (36.6 - temp) - 0.0167) * F + 20;
 
         setValues();
 

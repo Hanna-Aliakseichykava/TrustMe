@@ -1,10 +1,13 @@
-package org.trustme.domain.weatherObject.weatherUtil;
+package org.trustme.service.weatherUtils.weatherUtil;
+
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class WeatherTimeUtils_Impl implements WeatherTimeUtils {
 
     Map<Integer, String> discretTime = new HashMap();

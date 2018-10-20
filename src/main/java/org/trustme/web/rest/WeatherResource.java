@@ -2,7 +2,10 @@ package org.trustme.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.trustme.domain.Weather;
+import org.trustme.domain.WeatherDesc;
+import org.trustme.service.WeatherDescService;
 import org.trustme.service.WeatherService;
+import org.trustme.service.weatherUtils.WeatherParser;
 import org.trustme.web.rest.errors.BadRequestAlertException;
 import org.trustme.web.rest.util.HeaderUtil;
 import org.trustme.web.rest.util.PaginationUtil;
@@ -16,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -34,6 +38,8 @@ public class WeatherResource {
     private static final String ENTITY_NAME = "weather";
 
     private WeatherService weatherService;
+    private WeatherParser weatherParser;
+    private WeatherDescService weatherDescService;
 
     public WeatherResource(WeatherService weatherService) {
         this.weatherService = weatherService;
@@ -109,6 +115,19 @@ public class WeatherResource {
         Optional<Weather> weather = weatherService.findOne(id);
         return ResponseUtil.wrapOrNotFound(weather);
     }
+
+    /**
+     * GET  /weathers/:id : get the "id" weather.
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the weather, or with status 404 (Not Found)
+     */
+    @GetMapping("/weather")
+    @Timed
+    public ResponseEntity<WeatherDesc> getCurrentWeather() throws IOException {
+        Weather weather = weatherParser.getWeitherForToday(53.9139, 30.3364);
+        return ResponseUtil.wrapOrNotFound(weatherDescService.findOne((long)weather.getWeight()));
+    }
+
 
     /**
      * DELETE  /weathers/:id : delete the "id" weather.

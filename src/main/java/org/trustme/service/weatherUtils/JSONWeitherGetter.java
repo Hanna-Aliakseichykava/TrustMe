@@ -1,4 +1,6 @@
-package org.trustme.domain.weatherObject;
+package org.trustme.service.weatherUtils;
+
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,6 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
+@Component
 public class JSONWeitherGetter {
 
     public String getWeither(String lat, String lon) throws IOException {
