@@ -1,0 +1,27 @@
+{
+    "name": "WeatherDesc",
+    "fields": [
+        {
+            "fieldName": "weight",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "shortDesc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "longDesc",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181020083206",
+    "entityTableName": "weather_desc",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

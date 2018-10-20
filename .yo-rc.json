@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "org.trustme"
+    },
+    "jhipsterVersion": "5.5.0",
+    "applicationType": "monolith",
+    "baseName": "TrustMe",
+    "packageName": "org.trustme",
+    "packageFolder": "org/trustme",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTg2MWY1Y2MwNjQ2MmFkNjA3NTA0Nzk3NGIxZjRjMjE2NWRiNTEzM2I2MDk4MmIzYTI0YmU0Y2FjZDAyNmZlYzAyNzU0MGQ5NmU0MDFmZTc2ZTM2N2YzZGMzNjUwZDEwMGIyYjJlM2MyOWJlMDJiZDJhNDRjMTM5OWExMjEwYmQ=",
+    "clientFramework": "react",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false
+  }
+}

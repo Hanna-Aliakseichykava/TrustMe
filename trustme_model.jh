@@ -1,0 +1,52 @@
+
+enum PlaceType {
+	GMAP, EVENT
+}
+
+entity Place {
+	id String
+    title String
+    category String
+    type PlaceType
+    lat Double
+    lon Double
+    json TextBlob
+}
+
+entity Weather {
+    humid Integer
+    temp Double
+    tempMin Double
+    tempMax Double
+    date LocalDate
+    weight Integer
+    json TextBlob
+}
+entity WeatherDesc {
+	weight Integer
+    shortDesc String
+    longDesc String
+}
+
+entity Visited {
+	score Integer
+    date LocalDate
+}
+
+relationship OneToOne {
+	Visited{weather} to Weather
+    Visited{place} to Place
+}
+
+// Set pagination options
+paginate Place, Weather, Visited with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+

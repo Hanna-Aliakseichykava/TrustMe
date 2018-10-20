@@ -1,0 +1,44 @@
+{
+    "name": "Weather",
+    "fields": [
+        {
+            "fieldName": "humid",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "temp",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tempMin",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tempMax",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "weight",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "json",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181020083205",
+    "entityTableName": "weather",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

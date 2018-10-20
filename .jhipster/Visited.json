@@ -1,0 +1,40 @@
+{
+    "name": "Visited",
+    "fields": [
+        {
+            "fieldName": "score",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "weather",
+            "otherEntityName": "weather",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "visited"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "place",
+            "otherEntityName": "place",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "visited"
+        }
+    ],
+    "changelogDate": "20181020083207",
+    "entityTableName": "visited",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

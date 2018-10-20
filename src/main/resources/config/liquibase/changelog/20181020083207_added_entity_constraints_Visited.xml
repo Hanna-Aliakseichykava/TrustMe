@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Visited.
+    -->
+    <changeSet id="20181020083207-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="weather_id"
+                                 baseTableName="visited"
+                                 constraintName="fk_visited_weather_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="weather"/>
+
+        <addForeignKeyConstraint baseColumnNames="place_id"
+                                 baseTableName="visited"
+                                 constraintName="fk_visited_place_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="place"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="visited"
+                                 constraintName="fk_visited_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+    </changeSet>
+</databaseChangeLog>
