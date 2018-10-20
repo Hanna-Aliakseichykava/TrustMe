@@ -28,7 +28,7 @@ export class WeatherWidget extends React.Component<IWeatherWidgetProps, IWeather
   }
 
   renderWeatherImg = () => {
-    const url = 'content/images/weather/' + this.state.weather + '.png';
+    const url = 'content/images/weather/w' + this.state.weather + '.png';
     if (this.state.weather) {
       return '<img src=' + url + '/>';
     } else {
@@ -39,7 +39,16 @@ export class WeatherWidget extends React.Component<IWeatherWidgetProps, IWeather
   render() {
     const { weatherItem } = this.props;
 
-    return <div>{this.renderWeatherImg()}</div>;
+    return (
+      <div>
+        <div class="brand-icon">
+          {/* {this.renderWeatherImg()} */}
+          <img class="float-left" src="content/images/weather/w1.png" />
+          <h2>It is Cold today</h2>
+          <span>How about going in some warm place?</span>
+        </div>
+      </div>
+    );
   }
 
   componentDidMount() {

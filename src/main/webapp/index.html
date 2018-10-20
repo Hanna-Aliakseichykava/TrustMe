@@ -97,6 +97,13 @@
 </script>
     <script>
 
+    function onTileClick (latParam, lngParam) {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: { lat: latParam, lng: lngParam }
+      });
+    }
+
       function initMap() {
 
         var locations = [
