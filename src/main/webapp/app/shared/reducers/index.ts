@@ -27,6 +27,8 @@ import weatherDesc, {
 import visited, {
   VisitedState
 } from 'app/entities/visited/visited.reducer';
+
+import weatherWidg, { WeatherWidgetState } from 'app/modules/weather/weather.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -45,6 +47,7 @@ export interface IRootState {
   readonly visited: VisitedState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
+  readonly weatherWidg: WeatherWidgetState;
 }
 
 const rootReducer = combineReducers<IRootState>({
@@ -62,7 +65,8 @@ const rootReducer = combineReducers<IRootState>({
   weatherDesc,
   visited,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
-  loadingBar
+  loadingBar,
+  weatherWidg
 });
 
 export default rootReducer;
