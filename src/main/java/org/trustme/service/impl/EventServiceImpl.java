@@ -43,6 +43,8 @@ public class EventServiceImpl  implements EventService {
             Long id = arr.getJSONObject(i).getLong("id");
             String title = arr.getJSONObject(i).getString("title");
 
+            eventDto.setId(id);
+            eventDto.setTitle(title);
             events.add(eventDto);
         }
         return events;
