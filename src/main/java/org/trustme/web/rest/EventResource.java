@@ -14,17 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.trustme.domain.Place;
 import org.trustme.service.EventService;
 import org.trustme.service.dto.EventDto;
 import org.trustme.web.rest.util.PaginationUtil;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * REST controller for managing Place.
@@ -33,7 +28,7 @@ import java.util.Scanner;
 @RequestMapping("/api")
 public class EventResource {
 
-    private final Logger log = LoggerFactory.getLogger(PlaceResource.class);
+    private final Logger log = LoggerFactory.getLogger(EventResource.class);
 
     private static final String ENTITY_NAME = "event";
 
@@ -43,17 +38,18 @@ public class EventResource {
 
     @GetMapping("/events")
     @Timed
-    public ResponseEntity<List<EventDto>> getAllPlaces(
+    public ResponseEntity<List<EventDto>> getAllEvents(
         Pageable pageable,
         @RequestParam("lat") Double lat,
-        @RequestParam("lon") Double lon) throws IOException {
+        @RequestParam("lon") Double lon
+    ) throws IOException {
 
         log.debug("REST request to get a page of Events");
         //https://kudago.com/public-api/v1.4/events/?lat=55.7279&lon=37.5847&radius=1000&fields=id,title,categories,place,dates&actual_since=20181020
 
         List<EventDto> events = eventService.getAllEvents(
-            lat, //55.7279d
-            lon, //37.5847d
+            lat, //55.7279d,
+            lon, //37.5847d,
             "https://kudago.com/public-api/v1.4/events/?fields=id,title,categories,place,dates&actual_since=20181020"
         );
 
