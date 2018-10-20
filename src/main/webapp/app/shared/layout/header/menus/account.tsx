@@ -27,9 +27,6 @@ const accountMenuItems = (
     <DropdownItem tag={Link} to="/register">
       <FontAwesomeIcon icon="sign-in-alt" /> Register
     </DropdownItem>
-    <DropdownItem tag={Link} to="/show-markers">
-      <FontAwesomeIcon icon="sign-in-alt" /> Show Map (One Marker)
-    </DropdownItem>
   </>
 );
 
